@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title> Data Display</title>
+        <script type="text/Javascript">
+            var days=["First","Second","Third","Fourth","Fifth","Sixth","Seventh","Eighth","Ninth","Tenth","Eleventh",
+                "Twelth","Thirteenth","Fouteenth","Fifteenth","Sixteenth","Seventeenth","Eighteenth","Nineteenth",
+                "Twentyeth","Twentyfirst","Twentysecond","Twentythird","Twentyfourth","Twentyfifth","Twentysixth",
+                "Twentyseventh","Twentyeighth","Twentyninth","Thirtyeth","Thirtyfirst"];
+            
+            var months=["January","Febraury","March","April","May","June","July","August","September",
+                        "October","November","December"];
+            var year="two thousand twenty four";
+            var dateObj=new Date();
+            var currMonth = dateObj.getMonth();
+            var currDate = dateObj.getDate();
+            var currYear = dateObj.getFullYear();
+            if(currYear==2024)
+            alert("Today's Date is : " +days[currDate-1] + " " +months[currMonth] + " " +year);
+            else
+            alert("Today's Date is : " +days[currDate-1] + " " +months[currMonth] + " " +currYear);
+            
+        </script>
+    </head>
+</html>
