@@ -1,0 +1,18 @@
+<?php
+setcookie('User_Name',"priya",time()+36000);
+setcookie('User_Age',"28",0);
+setcookie('Category',"BOOKS",time()+86400*5);
+?>
+<html>
+    <head>
+        <title>setting cookie with php</title>
+</head>
+<body>
+    <?php
+    echo "SET COOKIS<br><br>";
+    echo "User_Name=".$_COOKIE['User_Name']."<br>";
+    echo "User_age=".$_COOKIE['User_Age']."<br>";
+    echo "Category=".$_COOKIE['Category']."<br>";
+    ?>
+    </body>
+</html>
