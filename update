@@ -1,0 +1,76 @@
+<html>
+    <head>
+        <title>Read and Write file</title>
+    </head>
+    <body>
+        <h2>Write to File</h2>
+        <form action="<?php $_SERVER['PHP_SELF'];?>" method="POST">
+            <textarea name="content" rows=5 cols=40 placeholder="Enter content here"></textarea>
+            <input type="Submit" name="write" style="color:blue;" value="write">
+        </form> 
+        <h2>Read Content From File</h2>
+        <?php
+            $fp=fopen("data.doc",'w+');
+            if($_SERVER['REQUEST_METHOD']=="POST" && isset($_POST['write']))
+            {
+                if(flock($fp,LOCK_EX))
+                {
+                    $content=$_POST['content'];
+                    fwrite($fp,$content);
+                    fclose($fp);
+                }
+            }
+            if(file_exists('data.doc'))
+            {
+                $readContent=file_get_contents('data.doc');
+                echo "<pre> $readContent";
+            }
+            else
+            echo "File not found";
+        ?>
+    </body>
+</html>
+
+
+<?php
+$conn=mysqli_connect("localhost","root","","bahu");
+if(!$conn)
+{
+    die("Connection failed");
+}
+if(isset($_POST['INSERT']))
+{
+    $Name=$_POST['NAME'];
+    $UUCMS=$_POST['UUCMS'];
+    $Course=$_POST['COURSE'];
+    $Address=$_POST['ADDRESS'];
+    $sql="INSERT INTO bali VALUES('$Name','$UUCMS','$Course','$Address')";
+    $result=mysqli_query($conn,$sql);
+    if($result)
+        echo "Insert query Successfull<br>";
+    else
+        echo "Insert query unsuccessfull<br>";
+}
+if(isset($_POST['UPDATE']))
+{
+    $UUCMS=$_POST['UUCMS'];
+    $NewAddress=$_POST['Updateaddress'];
+    $update="UPDATE bali SET  Address='$NewAddress' where UUCMS='$UUCMS'";
+    $result=mysqli_query($conn,$update);
+    if($result)
+    echo"Update query Successfull<br>";
+    else  
+      echo"update query UnSuccessfull<br>";
+
+}
+if(isset($_POST['DELETE']))
+{
+    $UUCMS=$_POST['UUCMS'];
+    $delete="DELETE FROM bali where UUCMS='$UUCMS'";
+    $result=mysqli_query($conn,$delete);
+    if($result)
+    echo"Delete query Successfull<br>";
+    else  
+      echo"Delete query unsuccessfull<br>";
+}
+?>
