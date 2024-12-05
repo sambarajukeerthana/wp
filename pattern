@@ -1,0 +1,16 @@
+<?php
+$Size=10;
+for($i=$Size;$i>=1;$i--)
+{
+    for($j=1;$j<=$Size-$i;$j++)
+    {
+        echo"&nbsp;&nbsp;";
+
+    }
+    for($k=1;$k<=$i;$k++)
+    {
+        echo"*&nbsp;&nbsp;";
+    }
+    echo"<br/>";
+}
+?>
