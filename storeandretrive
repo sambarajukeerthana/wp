@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <title>store and retriev image</title>
+    </head>
+    <body>
+        <form method="POST"enctype="multipart/form-data">
+            Email ID:<input type="email" name="email" id="email"required><br><br>
+            <input type="file" name="image"/><br><br>
+            <input type="submit" style="color=blue" name="upload">
+        </form>
+        <?php
+        $conn=mysqli_connect("localhost","root","","bahu");
+        if(!$conn)
+        {
+            die("connection failed");
+        }
+        if(isset($_POST['upload']))
+        {
+            $Email=$_POST['email'];
+            $fileName=basename($_FILES["image"]["name"]);
+            $image=$_FILES['image']['tmp_name'];
+            $imgcontent=addsLashes(file_get_contents($image));
+            $sql="INSERT INTO imgtable VALUES('$Email','$fileName','$imgcontent')";
+
+            if(mysqli_query($conn,$sql)==true)
+            echo"your image uploaded successfully";
+        else
+        echo"can not insert image".$conn->error;
+
+        $sqlq="SELECT*FROM imgtable where Email='$Email'";
+        $result=mysqli_query($conn,$sqlq);
+        $row=$result->fetch_array();
+        echo '<img src="data:image/png;base64,'.base64_encode($row['imgcontent']).'"/>';
+    }
+    ?>
+    </body>
+</html>
