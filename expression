@@ -1,0 +1,17 @@
+<html>
+<head>
+<title>Evaluate Expression</title>
+</head>
+<body>
+Expression:<input type="text"id="EXPR"><br>
+<button id="Evaluate"onclick="evaluation();">Evaluate</button><br>
+Result:<input type="text"id="result">
+<script type="text/javascript">
+function evaluation()
+{
+var Expression=document.getElementById("EXPR").value;
+document.getElementById("result").value=eval(Expression);
+}
+</script>
+</body>
+</html>
