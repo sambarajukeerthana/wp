@@ -1,0 +1,8 @@
+<?php
+$list = array(1,2,3,4,3,2,8,6,7);
+print_r($list);
+$new_list = array_values(array_unique($list));
+echo "<br>";
+echo "after removing duplicates";
+print_r($new_list);
+?>
